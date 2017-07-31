@@ -7,3 +7,4 @@ Respondents are asked to indicate which party made the statement.
 After indicating their guess they the context of the statement is presented along with the right answer. 
 Moreover, a small graph indicates the distribution of answers from previous respondents.
 
+Plan is to implement this in Shiny.
