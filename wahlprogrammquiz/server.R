@@ -44,7 +44,7 @@ shinyServer(function(input, output) {
   
   link_to_question <- reactive(paste0(ROOT_URL, "?sentence_id=", state$sentence_id))
   
-  
+  selected_answer = reactive(input$answer_select) ## TODO this is likely replaced by more complex UI input processing?
   event_next <- reactive(input$button_next)
   
   ## event observers
