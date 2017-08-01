@@ -2,6 +2,7 @@ library(shiny)
 library(readr)
 library(dplyr) ## developed with package version 0.7
 library(magrittr)
+library(rlang)
 
 library(DBI) ## developed with package version 0.7
 library(RSQLite) ## developed with package version 2.0
