@@ -10,22 +10,22 @@ shinyUI(fluidPage(
   p("Hello manifesto!"),
   
   span(id = "buttonsSpan",
-       div(id="linkeSpan", class = "buttonDiv",
+       div(id="linkeDiv", class = "buttonDiv",
             img(id = "linkeButton", src = "images/linkeL.png")
             ),
        div(id="grueneSpan", class = "buttonDiv",
             img(id = "grueneButton", src = "images/grueneL.png")
             ),
-       div(id="spdSpan", class = "buttonDiv",
+       div(id="spdDiv", class = "buttonDiv",
             img(id = "spdeButton", src = "images/spdL.png")
             ),
-       div(id="cduSpan", class = "buttonDiv",
+       div(id="cduDiv", class = "buttonDiv",
             img(id = "cdueButton", src = "images/cduL.png")
             ),
-       div(id="fdpSpan", class = "buttonDiv",
+       div(id="fdpDiv", class = "buttonDiv",
             img(id = "fdpButton", src = "images/fdpL.png")
             ),
-       div(id="afdSpan", class = "buttonDiv",
+       div(id="afdDiv", class = "buttonDiv",
             img(id = "afdButton", src = "images/afdL.png")
             )
        ),
