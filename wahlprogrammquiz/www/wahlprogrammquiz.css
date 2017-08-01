@@ -1,0 +1,23 @@
+#buttonsSpan {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+}
+#buttonsSpan div {
+  flex: 1;
+}
+#buttonsSpan img {
+  width:90%;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  cursor: pointer;
+}
+#buttonsSpan img:hover {
+  border: 5px solid black;
+}
+
+@media handheld and (orientation: portrait), (max-width: 720px) {
+    #buttonsSpan div {
+        flex-basis: 33%;
+    }
+}
