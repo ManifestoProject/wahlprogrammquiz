@@ -3,7 +3,7 @@ library(readr)
 library(dplyr)
 library(magrittr)
 
-### iff function from gitlabr and manifestoR; this is copied in order to not 
+### iff function from gitlabr and manifestoR; this is copied in order to not import these packages
 iff <- function (obj, test, fun, ...) {
   if ((is.function(test) && test(obj)) || (is.logical(test) && test)) {
     fun(obj, ...)
