@@ -3,6 +3,7 @@ library(shinyBS)
 
 shinyUI(fluidPage(
   includeCSS("www/wahlprogrammquiz.css"),
+  htmltools::tags$head(htmltools::tags$script(src='wahlprogrammquiz.js')),
   
   # Application title
   titlePanel("Wahlprogrammquiz"),
@@ -11,22 +12,22 @@ shinyUI(fluidPage(
   
   span(id = "buttonsSpan",
        div(id="linkeDiv", class = "buttonDiv",
-            img(id = "linkeButton", src = "images/linkeL.png")
+            img(id = "linkeButton", class="partyButton",src = "images/linkeL.png")
             ),
        div(id="grueneSpan", class = "buttonDiv",
-            img(id = "grueneButton", src = "images/grueneL.png")
+            img(id = "grueneButton", class="partyButton",src = "images/grueneL.png")
             ),
        div(id="spdDiv", class = "buttonDiv",
-            img(id = "spdeButton", src = "images/spdL.png")
+            img(id = "spdButton", class="partyButton", src = "images/spdL.png")
             ),
        div(id="cduDiv", class = "buttonDiv",
-            img(id = "cdueButton", src = "images/cduL.png")
+            img(id = "cdueButton", class="partyButton",src = "images/cduL.png")
             ),
        div(id="fdpDiv", class = "buttonDiv",
-            img(id = "fdpButton", src = "images/fdpL.png")
+            img(id = "fdpButton", class="partyButton", src = "images/fdpL.png")
             ),
        div(id="afdDiv", class = "buttonDiv",
-            img(id = "afdButton", src = "images/afdL.png")
+            img(id = "afdButton", class="partyButton", src = "images/afdL.png")
             )
        ),
 
