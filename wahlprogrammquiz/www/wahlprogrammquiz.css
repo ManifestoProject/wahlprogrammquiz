@@ -1,0 +1,16 @@
+#buttonsSpan {
+display: flex;
+justify-content: space-between;
+}
+#buttonsSpan img {
+  width:90%;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  cursor: pointer;
+}
+#buttonsSpan img:hover {
+  border: 5px solid black;
+}
+.buttonSpan {
+
+}
