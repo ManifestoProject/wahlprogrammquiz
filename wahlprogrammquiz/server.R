@@ -59,7 +59,16 @@ shinyServer(function(input, output) {
   
   link_to_question <- reactive(paste0(ROOT_URL, "?sentence_id=", state$sentence_id))
   
-  selected_answer <- reactive(input$partyButton) ## TODO this is likely replaced by more complex UI input processing?
+  selected_answer <- eventReactive(input$partyButton,
+                                   switch(input$partyButton,
+                                     linkeButton = "41113",
+                                     grueneButton = "41223",
+                                     spdButton = "41320",
+                                     cduButton = "41521",
+                                     fdpButton = "41420",
+                                     afdButton = "41953",
+                                     default = NULL))
+
   event_next <- reactive(input$button_next)
   
   answer_distribution <- reactive( ## This reacts on sentence_id, but should only be visible after selecting an answer
@@ -77,16 +86,18 @@ shinyServer(function(input, output) {
     updateQueryString(paste0("?sentence_id=", state$sentence_id))
     
   }, ignoreInit = TRUE)
+  
   observeEvent(selected_answer(), {
     
-    print(selected_answer())
-    db_connection %>%
-      db_insert_into(RESPONSES,
-                     data_frame(session_id = "test",
-                                sentence_id = state$sentence_id,   ## for the database table
-                                time_stamp = as.character(as.POSIXct(Sys.time())),
-                                answer = selected_answer()))
-  }, ignoreInit = TRUE)
+    if (!is.null(selected_answer())) {
+      db_connection %>%
+        db_insert_into(RESPONSES,
+                       data_frame(session_id = "test",
+                                  sentence_id = state$sentence_id,   ## for the database table
+                                  time_stamp = as.character(as.POSIXct(Sys.time())),
+                                  answer = selected_answer()))
+    }
+  })
   
   ## output functions
   output$sentence_text <- renderText(sentence_text())
