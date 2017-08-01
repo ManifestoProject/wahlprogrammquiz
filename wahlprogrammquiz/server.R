@@ -59,6 +59,7 @@ shinyServer(function(input, output) {
   
   ## output functions
   output$sentence_text <- renderText(sentence_text())
+  output$url <- renderText(link_to_question())
    
 
 })

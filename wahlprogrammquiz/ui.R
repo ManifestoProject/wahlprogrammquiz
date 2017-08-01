@@ -6,5 +6,11 @@ shinyUI(fluidPage(
   titlePanel("Wahlprogrammquiz"),
   
   textOutput("sentence_text"),
-  actionButton("button_next", "Next")
+  actionButton("button_next", "Next"),
+  
+  hr(),
+  p("Link to question: "),
+  
+  textOutput("url")
+  
 ))
