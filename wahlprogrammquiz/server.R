@@ -3,6 +3,8 @@ library(readr)
 library(dplyr)
 library(magrittr)
 
+ROOT_URL = "localhost:8020" ## TODO replace with final URL
+
 ### iff function from gitlabr and manifestoR; this is copied in order to not import these packages
 iff <- function (obj, test, fun, ...) {
   if ((is.function(test) && test(obj)) || (is.logical(test) && test)) {
@@ -39,6 +41,9 @@ shinyServer(function(input, output) {
                           seen_sentences = integer(0))
   
   sentence_text <- reactive(get_from_id(state$sentence_id, "text"))
+  
+  link_to_question <- reactive(paste0(ROOT_URL, "?sentence_id=", state$sentence_id))
+  
   
   event_next <- reactive(input$button_next)
   
