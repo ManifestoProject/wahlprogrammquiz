@@ -77,10 +77,9 @@ shinyServer(function(input, output) {
     
   }, ignoreInit = TRUE)
   
-  
   ## output functions
   output$sentence_text <- renderText(sentence_text())
   output$url <- renderText(link_to_question())
-   
+  output$answer_distribution <- renderTable(answer_distribution())
 
 })

@@ -13,7 +13,10 @@ shinyUI(fluidPage(
   
   hr(),
   p("Link to question: "),
+  textOutput("url"),
   
-  textOutput("url")
+  hr(),
+  p("Answer distribution"),
+  tableOutput("answer_distribution")
   
 ))
