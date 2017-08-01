@@ -77,6 +77,14 @@ shinyServer(function(input, output) {
     updateQueryString(paste0("?sentence_id=", state$sentence_id))
     
   }, ignoreInit = TRUE)
+  observeEvent(selected_answer(), {
+    db_connection %>%
+      db_insert_into(RESPONSES,
+                     data_frame(session_id = "test",
+                                sentence_id = state$sentence_id,   ## for the database table
+                                time_stamp = as.character(as.POSIXct(Sys.time())),
+                                answer = selected_answer()))
+  }, ignoreInit = TRUE)
   
   ## output functions
   output$sentence_text <- renderText(sentence_text())
