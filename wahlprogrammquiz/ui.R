@@ -29,10 +29,6 @@ shinyUI(fluidPage(
        div(id="afdDiv", class = "buttonDiv",
             img(id = "afdButton", class="partyButton", src = "images/afdL.png")
             )
-       ),
-       div(id="afdDiv", class = "buttonDiv",
-           img(id = "afdButton", src = "images/afdL.png")
-       )
   ),
 
   
