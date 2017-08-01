@@ -21,7 +21,7 @@ shinyUI(fluidPage(
             img(id = "spdButton", class="partyButton", src = "images/spdL.png")
             ),
        div(id="cduDiv", class = "buttonDiv",
-            img(id = "cdueButton", class="partyButton",src = "images/cduL.png")
+            img(id = "cduButton", class="partyButton",src = "images/cduL.png")
             ),
        div(id="fdpDiv", class = "buttonDiv",
             img(id = "fdpButton", class="partyButton", src = "images/fdpL.png")
