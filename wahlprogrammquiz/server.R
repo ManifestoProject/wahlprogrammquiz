@@ -1,6 +1,16 @@
 library(shiny)
 library(readr)
 library(dplyr)
+library(magrittr)
+
+### iff function from gitlabr and manifestoR; this is copied in order to not 
+iff <- function (obj, test, fun, ...) {
+  if ((is.function(test) && test(obj)) || (is.logical(test) && test)) {
+    fun(obj, ...)
+  } else {
+    obj
+  }
+}
 
 questions <- read_csv("sentences.csv")
 
@@ -21,8 +31,15 @@ random_sentence_id <- function(without = c()) {
 
 shinyServer(function(input, output) {
   
+  
   ## internal reactives
-  sentence_id <- reactive(random_sentence_id())
+  sentence_id <- reactive({
+
+    getQueryString() %>%
+      extract2("sentence_id") %>%
+      iff(is.null, random_sentence_id)
+
+    })
   
   sentence_text <- reactive(get_from_id(sentence_id(), "text"))
   
