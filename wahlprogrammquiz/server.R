@@ -1,6 +1,33 @@
 library(shiny)
+library(readr)
+library(dplyr)
+
+questions <- read_csv("sentences.csv")
+
+get_from_id <- function(id, field_name) {
+  questions %>%
+    filter(sentence_id == id) %>%
+    select(one_of(field_name)) %>%
+    unlist()
+}
+
+random_sentence_id <- function(without = c()) {
+  questions %>%
+    filter(!sentence_id %in% without) %>%
+    select(sentence_id) %>%
+    sample_n(1) %>%
+    unlist()
+}
 
 shinyServer(function(input, output) {
+  
+  ## internal reactives
+  sentence_id <- reactive(random_sentence_id())
+  
+  sentence_text <- reactive(get_from_id(sentence_id(), "text"))
+  
+  ## output functions
+  output$sentence_text <- renderText(sentence_text())
    
 
 })
