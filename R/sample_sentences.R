@@ -39,7 +39,7 @@ de2017  <- readtext("programs/*.txt", ignore_missing_files = FALSE, encoding="UT
 
 
 ## not yet ready
-sample_sentences <- de2017 %>%
+sample_sentences <- de2017 %>% filter(heading_order < 1) %>%
   sample_n(10) 
   
 
