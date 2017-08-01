@@ -78,6 +78,8 @@ shinyServer(function(input, output) {
     
   }, ignoreInit = TRUE)
   observeEvent(selected_answer(), {
+    
+    print(selected_answer())
     db_connection %>%
       db_insert_into(RESPONSES,
                      data_frame(session_id = "test",
