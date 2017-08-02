@@ -3,6 +3,7 @@ library(readr)
 library(dplyr) ## developed with package version 0.7
 library(magrittr)
 library(rlang)
+library(stringi)
 
 library(DBI) ## developed with package version 0.7
 library(RSQLite) ## developed with package version 2.0
@@ -10,7 +11,7 @@ library(RSQLite) ## developed with package version 2.0
 ROOT_URL = "localhost:8020" ## TODO replace with final URL
 RESPONSES = "responses"
 db_connection <- dbConnect(RSQLite::SQLite(), "wahlprogrammquiz.sqlite")
-if (!db_has_table(db_connection, RESPONSES)) {
+if (!dbExistsTable(db_connection, RESPONSES)) {
   dbWriteTable(db_connection,
                RESPONSES,
                data_frame(session_id = character(),  ## This is a schema definition
@@ -46,14 +47,15 @@ random_sentence_id <- function(without = c()) {
     unlist()
 }
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
   
   
   ## internal reactives
   state <- reactiveValues(sentence_id = isolate(getQueryString()) %>%
                             extract2("sentence_id") %>%
                             iff(is.null, random_sentence_id),
-                          seen_sentences = integer(0))
+                          seen_sentences = integer(0),
+                          session_id = paste0(stri_rand_strings(1, 20), "_", as.character(as.POSIXct(Sys.time()))))
   
   sentence_text <- reactive(get_from_id(state$sentence_id, "text"))
   
@@ -92,7 +94,7 @@ shinyServer(function(input, output) {
     if (!is.null(selected_answer())) {
       db_connection %>%
         db_insert_into(RESPONSES,
-                       data_frame(session_id = "test",
+                       data_frame(session_id = state$session_id,
                                   sentence_id = state$sentence_id,   ## for the database table
                                   time_stamp = as.character(as.POSIXct(Sys.time())),
                                   answer = selected_answer()))
