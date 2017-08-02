@@ -133,7 +133,7 @@ shinyServer(function(input, output, session) {
            textOutput("url"),
            actionButton("button_next", "Next"))
     } else {
-      p("No show")
+      p()
     }
   })
 
