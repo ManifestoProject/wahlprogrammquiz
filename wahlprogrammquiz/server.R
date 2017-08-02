@@ -47,6 +47,10 @@ random_sentence_id <- function(without = c()) {
     unlist()
 }
 
+valid_sentence_ids <- function() {
+  questions %$% sentence_id %>% unlist()
+}
+
 shinyServer(function(input, output, session) {
   
   
@@ -84,6 +88,11 @@ shinyServer(function(input, output, session) {
   observeEvent(event_next(), {
     
     state$seen_sentences <- c(state$seen_sentences, state$sentence_id)
+    
+    ## If User is through all questions, start over
+    if (length(setdiff(state$seen_sentences, valid_sentence_ids())) == 0) {
+      state$seen_sentences <- integer(0)
+    }
     state$sentence_id <- random_sentence_id(without = state$seen_sentences)
     updateQueryString(paste0("?sentence_id=", state$sentence_id))
     
