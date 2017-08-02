@@ -31,16 +31,7 @@ shinyUI(fluidPage(
             )
   ),
 
-  
-  actionButton("button_next", "Next"),
-  
-  hr(),
-  p("Link to question: "),
-  textOutput("url"),
-  
-  hr(),
-  p("Answer distribution"),
-  tableOutput("answer_distribution")
+  uiOutput("answer_area")
 
 
 ))

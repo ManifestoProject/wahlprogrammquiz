@@ -59,9 +59,12 @@ shinyServer(function(input, output, session) {
                             extract2("sentence_id") %>%
                             iff(is.null, random_sentence_id),
                           seen_sentences = integer(0),
-                          session_id = paste0(stri_rand_strings(1, 20), "_", as.character(as.POSIXct(Sys.time()))))
+                          session_id = paste0(stri_rand_strings(1, 20), "_", as.character(as.POSIXct(Sys.time()))),
+                          show_answer = FALSE)
   
   sentence_text <- reactive(get_from_id(state$sentence_id, "text"))
+  
+  sentence_party <- reactive(get_from_id(state$sentence_id, "party"))
   
   link_to_question <- reactive(paste0(ROOT_URL, "?sentence_id=", state$sentence_id))
   
@@ -87,6 +90,8 @@ shinyServer(function(input, output, session) {
   ## event observers
   observeEvent(event_next(), {
     
+    state$show_answer <- FALSE
+    
     state$seen_sentences <- c(state$seen_sentences, state$sentence_id)
     
     ## If User is through all questions, start over
@@ -100,6 +105,8 @@ shinyServer(function(input, output, session) {
   
   observeEvent(selected_answer(), {
     
+    state$show_answer <- TRUE
+    
     if (!is.null(selected_answer())) {
       db_connection %>%
         db_insert_into(RESPONSES,
@@ -112,7 +119,21 @@ shinyServer(function(input, output, session) {
   
   ## output functions
   output$sentence_text <- renderText(sentence_text())
+  output$sentence_party <- renderText(sentence_party())
   output$url <- renderText(link_to_question())
   output$answer_distribution <- renderTable(answer_distribution())
+  output$answer_area <- renderUI({ ## This should be greatly modified for layouting!
+    if(state$show_answer) {
+      list(p("The answer:"),
+           textOutput("sentence_party"),
+           p("Answer distribution"),
+           tableOutput("answer_distribution"),
+           p("Link to question: "),
+           textOutput("url"),
+           actionButton("button_next", "Next"))
+    } else {
+      p("No show")
+    }
+  })
 
 })
