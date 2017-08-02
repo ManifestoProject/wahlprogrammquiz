@@ -57,7 +57,8 @@ shinyServer(function(input, output, session) {
   ## internal reactives
   state <- reactiveValues(sentence_id = isolate(getQueryString()) %>%
                             extract2("sentence_id") %>%
-                            iff(is.null, random_sentence_id),
+                            iff(is.null, random_sentence_id) %>%
+                            iff(. %>% is_in(valid_sentence_ids()) %>% not(), random_sentence_id),
                           seen_sentences = integer(0),
                           session_id = paste0(stri_rand_strings(1, 20), "_", as.character(as.POSIXct(Sys.time()))),
                           show_answer = FALSE)
