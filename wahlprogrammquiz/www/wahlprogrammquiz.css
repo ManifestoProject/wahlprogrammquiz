@@ -1,23 +1,128 @@
+body {
+    background-color: #f7f7f7;
+}
+.container {
+  height:100vh;
+  min-height: 600px;
+  position:relative;
+}
+#title {
+  color: #111; font-family: 'Helvetica Neue', sans-serif;
+  font-size: 4em;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+#sentenceDiv {
+overflow: hidden; 
+text-align: center;
+margin: auto;
+}
+#sentenceSpan {
+margin: 0 auto;
+display:inline-block;
+text-align: center;
+
+}
+#sentence_text {
+font-family: Georgia, serif;
+font-size: 1.5em;
+font-style: italic;
+margin: 0 auto;
+padding: 0.25em 40px;
+line-height: 1.45;
+position: relative;
+color: #383838;
+}
+#sentence_text:before {
+display: block;
+content: "\201C";
+font-size: 80px;
+position: absolute;
+left: -20px;
+top: -20px;
+color: #7a7a7a;
+}
+#buttonsDiv {
+  position:absolute;
+  bottom:0;
+}
 #buttonsSpan {
     position: relative;
     display: flex;
     flex-flow: row wrap;
+    bottom:0;
 }
 #buttonsSpan div {
   flex: 1;
 }
 #buttonsSpan img {
-  width:90%;
+  width:100%;
   border-radius: 50%;
   border: 5px solid transparent;
   cursor: pointer;
+  margin: 0 auto;
 }
 #buttonsSpan img:hover {
-  border: 5px solid black;
+  border: 5px solid;
+}
+#linkeDiv img:hover {
+  border-color: black;
+}
+#grueneDiv img:hover {
+  border-color: yellow;
+}
+#spdDiv img:hover {
+  border-color: black;
+}
+#cduDiv img:hover {
+  border-color: red;
+}
+#fdpDiv img:hover {
+ border-color: blue;
+}
+#afdDiv img:hover {
+  border-color: red;
 }
 
+.barDiv {
+  height: 30vh;
+  position:relative;
+}
+
+.bar {
+  margin: 50px auto 0 auto;
+  height:50%;
+  width:40%;
+  position:absolute;
+  bottom:0;
+  left: 0;
+  right: 0;
+}
+#linkeBar {
+  background-color: purple;
+}
+#grueneBar {
+  background-color: green;
+}
+#spdBar {
+  background-color: red;
+}
+#cduBar {
+  background-color: black;
+}
+#fdpBar {
+  background-color: yellow;
+}
+#afdBar {
+  background-color: blue;
+}
+
+
 @media handheld and (orientation: portrait), (max-width: 720px) {
-    #buttonsSpan div {
-        flex-basis: 33%;
-    }
+    #buttonsSpan div {flex-basis: 33%;}
+    #title {font-size: 2em;}
 }
