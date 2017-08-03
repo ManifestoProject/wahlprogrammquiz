@@ -83,7 +83,5 @@ program_sentences <- map2_chr(sentences_lines$paragraph,
 set.seed(42)
 sample_sentences <- program_sentences %>% filter(heading_order < 1) %>%
   group_by(partyabbrev) %>%
-  sample_n(20) %T% 
-  write_csv("wahlprogrammquiz/sample.csv") %>%
-  write_xlsx("wahlprogrammquiz/sample.xlsx")
-
+  sample_n(20) %>% 
+  write.csv("wahlprogrammquiz/sample.csv",fileEncoding="UTF-8",row.names=FALSE) 
