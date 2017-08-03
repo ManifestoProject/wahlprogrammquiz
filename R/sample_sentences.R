@@ -21,7 +21,7 @@ partynames <- tribble(
 )
 
 replacement_char <- "XXXXX"
-no_sent_endings <- c("Vgl\\.","z\\.B\\.","Abs\\.","Art\\.","u\\.a\\.","z\\.b\\.","Z\\.B\\.","S\\.","regex('(?<=[A-Z])\\.')")
+no_sent_endings <- c("vgl\\.","Vgl\\.","z\\.B\\.","Abs\\.","Art\\.","u\\.a\\.","z\\.b\\.","Z\\.B\\.","S\\.","regex('(?<=[A-Z])\\.')")
 
 no_sent_ending_xxx <- str_replace_all(no_sent_endings,"(\\.)",replacement_char)                   
 replacement_list <- setNames(no_sent_ending_xxx,no_sent_endings)
@@ -77,11 +77,29 @@ program_sentences <- map2_chr(sentences_lines$paragraph,
     context_before = str_replace_all(context,"SENTENCEHERE.*","")
   ) %>% 
   select(-context) %>%
-  rename(text=sentence)
-  
+  rename(text=sentence) 
 
-set.seed(42)
-sample_sentences <- program_sentences %>% filter(heading_order < 1) %>%
+## save 
+
+program_sentences %T>% 
+  write.csv("wahlprogrammquiz/all_sentences.csv",fileEncoding="UTF-8",row.names=FALSE) %>%
+  as.data.frame() %>%
+  write.xlsx("wahlprogrammquiz/all_sentences.xlsx",row.names=FALSE)
+
+## sample
+
+sample_seed <- 41
+
+sample_sentences <- program_sentences %>% 
+  filter(heading_order < 1) %>%
   group_by(partyabbrev) %>%
-  sample_n(20) %>% 
-  write.csv("wahlprogrammquiz/sample.csv",fileEncoding="UTF-8",row.names=FALSE) 
+  sample_n(50) %>%
+  mutate(
+    include = 0
+  ) %>% 
+  select(include,partyabbrev,text,everything()) %T>%
+  write.csv(paste("wahlprogrammquiz/sample",sample_seed,".csv",sep=""),fileEncoding="UTF-8",row.names=FALSE) %>%
+  as.data.frame() %>%
+  write.xlsx(paste("wahlprogrammquiz/sample",sample_seed,".xlsx",sep=""),sheetName = "Sample" ,row.names=FALSE)
+
+
