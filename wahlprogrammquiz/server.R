@@ -92,7 +92,7 @@ shinyServer(function(input, output, session) {
   ## event observers
   observeEvent(event_next(), {
     #this sends a message to js to reset the bars to 0, and hide the percentages
-    session$sendCustomMessage(type='resetBarValuesCallbackHandler', NULL)
+    session$sendCustomMessage(type='resetBarValuesCallbackHandler', "hello")
     state$show_answer <- FALSE
     
     state$seen_sentences <- c(state$seen_sentences, state$sentence_id)
