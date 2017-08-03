@@ -21,7 +21,7 @@ partynames <- tribble(
 )
 
 replacement_char <- "XXXXX"
-no_sent_endings <- c("vgl\\.","Vgl\\.","z\\.B\\.","Abs\\.","Art\\.","u\\.a\\.","z\\.b\\.","Z\\.B\\.","S\\.","regex('(?<=[A-Z])\\.')")
+no_sent_endings <- c("bzw\\.","vgl\\.","Vgl\\.","z\\.B\\.","Abs\\.","Art\\.","u\\.a\\.","z\\.b\\.","Z\\.B\\.","S\\.","regex('(?<=[A-Z])\\.')")
 
 no_sent_ending_xxx <- str_replace_all(no_sent_endings,"(\\.)",replacement_char)                   
 replacement_list <- setNames(no_sent_ending_xxx,no_sent_endings)
