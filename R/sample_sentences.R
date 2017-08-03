@@ -86,9 +86,11 @@ program_sentences %T>%
   as.data.frame() %>%
   write.xlsx("wahlprogrammquiz/all_sentences.xlsx",row.names=FALSE)
 
-## sample
 
+## sample
+## set seed 
 sample_seed <- 41
+set.seed(sample_seed)
 
 sample_sentences <- program_sentences %>% 
   filter(heading_order < 1) %>%
