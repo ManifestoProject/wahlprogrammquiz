@@ -90,17 +90,20 @@ color: #7a7a7a;
 
 .barDiv {
   height: 30vh;
+  max-height: 500px;
   position:relative;
 }
 
 .bar {
+  z-index: -9999;
   margin: 50px auto 0 auto;
   height:50%;
-  width:40%;
+  width:75%;
   position:absolute;
   bottom:0;
   left: 0;
   right: 0;
+  overflow: hidden;
 }
 #linkeBar {
   background-color: purple;
@@ -120,9 +123,39 @@ color: #7a7a7a;
 #afdBar {
   background-color: blue;
 }
-
+.per {
+  z-index: 9999;
+  font-size: 3em;
+  color: white;
+  text-shadow: black 0 0 10px;
+  text-align: center;
+  margin-bottom: 50px;
+  position:relative
+}
 
 @media handheld and (orientation: portrait), (max-width: 720px) {
     #buttonsSpan div {flex-basis: 33%;}
     #title {font-size: 2em;}
+    .bar {
+
+}
+.barDiv {
+height: 80%;
+float: left;
+width: 15%;
+top: 50%;
+transform: translateY(-50%);
+}
+.bar {
+width:100%;
+top: 50%;
+margin: 0 auto;
+height:100%;
+transform: translateY(-50%);
+}
+#buttonsSpan img {
+  width:80%;
+  float: left;
+}
+.per {display: none !important;}
 }

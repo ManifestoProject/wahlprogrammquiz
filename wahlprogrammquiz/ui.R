@@ -11,46 +11,47 @@ shinyUI(fixedPage(title = "Wahlprogrammquiz",
            textOutput("sentence_text")
            )
       ),
+  
+  uiOutput("answer_area"),
+  
   div(id="buttonsDiv",
   span(id = "buttonsSpan",
        div(id="linkeDiv", class = "partyDiv",
             img(id = "linkeButton", class="partyButton",src = "images/linkeL.png"),
-            div(id="linkeBarDiv", class = "barDiv",
+            div(id="linkeBarDiv", class = "barDiv", div(class ="per", "00"),
                 div(id="linkeBar", class = "bar")
                 )
             ),
        div(id="grueneDiv", class = "partyDiv",
             img(id = "grueneButton", class="partyButton",src = "images/grueneL.png"),
-           div(id="grueneBarDiv", class = "barDiv",
+           div(id="grueneBarDiv", class = "barDiv", div(class ="per", "00"),
                div(id="grueneBar", class = "bar")
            )
             ),
        div(id="spdDiv", class = "partyDiv",
             img(id = "spdButton", class="partyButton", src = "images/spdL.png"),
-           div(id="spdBarDiv", class = "barDiv",
+           div(id="spdBarDiv", class = "barDiv", div(class ="per", "00"),
                div(id="spdBar", class = "bar")
            )
             ),
        div(id="cduDiv", class = "partyDiv",
             img(id = "cduButton", class="partyButton",src = "images/cduL.png"),
-           div(id="cduBarDiv", class = "barDiv",
+           div(id="cduBarDiv", class = "barDiv", div(class ="per", "00"),
                div(id="cduBar", class = "bar")
            )
             ),
        div(id="fdpDiv", class = "partyDiv",
             img(id = "fdpButton", class="partyButton", src = "images/fdpL.png"),
-           div(id="fdpBarDiv", class = "barDiv",
+           div(id="fdpBarDiv", class = "barDiv", div(class ="per", "00"),
                div(id="fdpBar", class = "bar")
            )
             ),
        div(id="afdDiv", class = "partyDiv",
             img(id = "afdButton", class="partyButton", src = "images/afdL.png"),
-           div(id="afdBarDiv", class = "barDiv",
+           div(id="afdBarDiv", class = "barDiv", div(class ="per", "00"),
                div(id="afdBar", class = "bar")
            )
-        )
-  )),
-
-  uiOutput("answer_area")
+       )
+  ))
 
 ))
