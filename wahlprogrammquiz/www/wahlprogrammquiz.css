@@ -23,7 +23,7 @@ body {
 #sentenceDiv {
 overflow: hidden; 
 text-align: center;
-margin: auto;
+margin: 0 auto;
 }
 #sentenceSpan {
 margin: 0 auto;
@@ -38,6 +38,8 @@ font-style: italic;
 margin: 0 auto;
 padding: 0.25em 40px;
 line-height: 1.45;
+left:20px;
+min-height:40px;
 position: relative;
 color: #383838;
 }
@@ -49,6 +51,7 @@ position: absolute;
 left: -20px;
 top: -20px;
 color: #7a7a7a;
+z-index:15;
 }
 #buttonsDiv {
   position:relative;
@@ -143,9 +146,9 @@ color: #7a7a7a;
 }
 
 #AboutLink {
-  position: fixed; /* Sit on top of the page content */
-  width: 10em; /* Full width (cover the whole page) */
-  height: 2vh; /* Full height (cover the whole page) */
+  position: absolute;
+  width: 10em; 
+  height: 2vh; 
   top: 10px;
   right: 10px;
 }

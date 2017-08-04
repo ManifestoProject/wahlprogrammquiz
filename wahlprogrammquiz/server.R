@@ -69,8 +69,8 @@ shinyServer(function(input, output, session) {
                           show_answer = FALSE)
   
   sentence_text <- reactive(get_from_id(state$sentence_id, "text"))
-  context_before <- reactive(get_from_id(state$sentence_id, "context_before"))
-  context_after <- reactive(get_from_id(state$sentence_id, "context_after"))
+  context_before <- reactive(get_from_id(state$sentence_id, "context_before") %>% iff(is.na, function(obj) ""))
+  context_after <- reactive(get_from_id(state$sentence_id, "context_after") %>% iff(is.na, function(obj) ""))
   info_span <- reactive(HTML(paste0(
                              "Aus dem Wahlprogramm der ",
                              strong(get_from_id(state$sentence_id, "partyabbrev")),  ## TODO change to partyname when new table is there
