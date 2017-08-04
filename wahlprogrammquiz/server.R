@@ -32,7 +32,8 @@ iff <- function (obj, test, fun, ...) {
 }
 
 questions <- read_csv("sentences.csv") %>%
-  rename(sentence_id = corpus_sentence_id)
+  rename(sentence_id = corpus_sentence_id) %>%
+  mutate(sentence = text)
 
 get_from_id <- function(id, field_name) {
   questions %>%
