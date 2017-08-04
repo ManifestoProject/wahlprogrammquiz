@@ -1,0 +1,196 @@
+body {
+    background-color: #f7f7f7;
+}
+.container {
+  height:100vh;
+  min-height: 600px;
+  position:relative;
+}
+#title {
+  color: #111; font-family: 'Helvetica Neue', sans-serif;
+  font-size: 4em;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+#infoDiv {
+  margin-bottom:10px;
+  font-size:1.2em;
+}
+#sentenceDiv {
+overflow: hidden; 
+text-align: center;
+margin: 0 auto;
+}
+#sentenceSpan {
+margin: 0 auto;
+display:inline-block;
+text-align: center;
+
+}
+#sentence_text {
+font-family: Georgia, serif;
+font-size: 1.5em;
+font-style: italic;
+margin: 0 auto;
+padding: 0.25em 40px;
+line-height: 1.45;
+left:20px;
+min-height:40px;
+position: relative;
+color: #383838;
+}
+#sentence_text:before {
+display: block;
+content: "\201C";
+font-size: 80px;
+position: absolute;
+left: -20px;
+top: -20px;
+color: #7a7a7a;
+z-index:15;
+}
+#buttonsDiv {
+  position:relative;
+  top:20px;
+}
+#buttonsSpan {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    bottom:0;
+}
+#buttonsSpan div {
+  flex: 1;
+}
+#buttonsSpan img {
+  width:100%;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  cursor: pointer;
+  margin: 0 auto;
+}
+#buttonsSpan img:hover {
+  border: 5px solid;
+}
+#linkeDiv img:hover {
+  border-color: black;
+}
+#grueneDiv img:hover {
+  border-color: yellow;
+}
+#spdDiv img:hover {
+  border-color: black;
+}
+#cduDiv img:hover {
+  border-color: red;
+}
+#fdpDiv img:hover {
+ border-color: blue;
+}
+#afdDiv img:hover {
+  border-color: red;
+}
+
+.barDiv {
+  height: 30vh;
+  max-height: 500px;
+  position:relative;
+}
+
+.bar {
+  z-index: -9999;
+  margin: 50px auto 0 auto;
+  height:50%;
+  width:75%;
+  position:absolute;
+  bottom:0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+#linkeBar {
+  background-color: purple;
+}
+#grueneBar {
+  background-color: green;
+}
+#spdBar {
+  background-color: red;
+}
+#cduBar {
+  background-color: black;
+}
+#fdpBar {
+  background-color: yellow;
+}
+#afdBar {
+  background-color: blue;
+}
+.per {
+  z-index: 9999;
+  font-size: 3em;
+  color: white;
+  text-shadow: black 0 0 10px;
+  text-align: center;
+  margin-bottom: 50px;
+  position:relative
+}
+
+#bottom_row {
+  position:relative;
+  top:10vh;
+}
+
+#AboutLink {
+  position: absolute;
+  width: 10em; 
+  height: 2vh; 
+  top: 10px;
+  right: 10px;
+}
+
+#AboutOverlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none;
+  width: 90%; /* Full width (cover the whole page) */
+  height: 90%; /* Full height (cover the whole page) */
+  top: 40px;
+  left: 40px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  border: 2px solid #666666;
+  z-index: 20; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+@media handheld and (orientation: portrait), (max-width: 720px) {
+    #buttonsSpan div {flex-basis: 33%;}
+    #title {font-size: 2em;}
+    .bar {
+
+}
+.barDiv {
+height: 80%;
+float: left;
+width: 15%;
+top: 50%;
+transform: translateY(-50%);
+}
+.bar {
+width:100%;
+top: 50%;
+margin: 0 auto;
+height:100%;
+transform: translateY(-50%);
+}
+#buttonsSpan img {
+  width:80%;
+  float: left;
+}
+.per {display: none !important;}
+}
