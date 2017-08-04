@@ -1,10 +1,10 @@
 library(shiny)
 library(shinyBS)
 
-shinyUI(fixedPage(title = "Wahlprogrammquiz",
+shinyUI(fixedPage(title = "Welche Partei hat's gesagt?",
   includeCSS("www/wahlprogrammquiz.css"),
   htmltools::tags$head(htmltools::tags$script(src='wahlprogrammquiz.js')),
-  div(id="title", "Wahlprogrammquiz"),
+  div(id="title", "Welche Partei hat's gesagt?"),
   
   div(id = "infoDiv",
       uiOutput("info_span")),
