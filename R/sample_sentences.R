@@ -21,7 +21,7 @@ partynames <- tribble(
 )
 
 replacement_char <- "XXXXX"
-no_sent_endings <- c("bzw\\.","vgl\\.","Vgl\\.","z\\.B\\.","Abs\\.","Art\\.","u\\.a\\.","z\\.b\\.","Z\\.B\\.","S\\.","regex('(?<=[A-Z])\\.')")
+no_sent_endings <- c("Nr\\.","bzw\\.","vgl\\.","Vgl\\.","z\\.B\\.","Abs\\.","Art\\.","u\\.a\\.","z\\.b\\.","Z\\.B\\.","S\\.","regex('(?<=[A-Z])\\.')")
 
 no_sent_ending_xxx <- str_replace_all(no_sent_endings,"(\\.)",replacement_char)                   
 replacement_list <- setNames(no_sent_ending_xxx,no_sent_endings)
@@ -77,7 +77,12 @@ program_sentences <- map2_chr(sentences_lines$paragraph,
     context_before = str_replace_all(context,"SENTENCEHERE.*","")
   ) %>% 
   select(-context) %>%
-  rename(text=sentence) 
+  mutate(
+    text=sentence,
+    text = str_replace_all(text,"Wir Freie Demokraten|Wir GRÜNE","Wir"),
+    text = str_replace(text,"^-",""),
+    partyname_in_text = str_detect(text,"CDU|CSU|FDP|AfD|GRÜNE|LINKE|SPD|Union")
+  )
 
 ## save 
 
@@ -86,22 +91,31 @@ program_sentences %T>%
   as.data.frame() %>%
   write.xlsx("wahlprogrammquiz/all_sentences.xlsx",row.names=FALSE)
 
-
 ## sample
 ## set seed 
 sample_seed <- 41
 set.seed(sample_seed)
 
 sample_sentences <- program_sentences %>% 
-  filter(heading_order < 1) %>%
+  filter(heading_order < 1 & partyname_in_text == FALSE) %>%
+  filter(str_detect(text,"^Wir ")) %>%
+  filter(!str_detect(text,"dabei|damit|deshalb|außerdem|solche|daher")) %>%
   group_by(partyabbrev) %>%
-  sample_n(50) %>%
+  sample_n(25) %>%
   mutate(
-    include = 0
+    exclude = 0
   ) %>% 
+  ungroup() %>%
   select(include,partyabbrev,text,everything()) %T>%
   write.csv(paste("wahlprogrammquiz/sample",sample_seed,".csv",sep=""),fileEncoding="UTF-8",row.names=FALSE) %>%
   as.data.frame() %>%
   write.xlsx(paste("wahlprogrammquiz/sample",sample_seed,".xlsx",sep=""),sheetName = "Sample" ,row.names=FALSE)
 
-
+read.xlsx("wahlprogrammquiz/sample41_edited.xlsx", sheetName="Sample") %>% 
+  as_data_frame() %>% 
+  filter(exclude==FALSE) %>%
+  group_by(partyabbrev) %>%
+  sample_n(10) %>%
+  write_csv(paste("wahlprogrammquiz/sample_manualedited",sample_seed,".csv",sep=""))
+  
+  
