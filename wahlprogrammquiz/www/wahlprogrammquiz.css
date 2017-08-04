@@ -133,6 +133,11 @@ color: #7a7a7a;
   position:relative
 }
 
+#bottom_row {
+  position:relative;
+  top:10vh;
+}
+
 @media handheld and (orientation: portrait), (max-width: 720px) {
     #buttonsSpan div {flex-basis: 33%;}
     #title {font-size: 2em;}

@@ -9,7 +9,7 @@ library(DBI) ## developed with package version 0.7
 library(RSQLite) ## developed with package version 2.0
 library(dbplyr)
 
-ROOT_URL = "localhost:8020" ## TODO replace with final URL
+ROOT_URL = "http://localhost:8020" ## TODO replace with final URL
 RESPONSES = "responses"
 db_connection <- dbConnect(RSQLite::SQLite(), "wahlprogrammquiz.sqlite")
 if (!dbExistsTable(db_connection, RESPONSES)) {
@@ -136,19 +136,19 @@ shinyServer(function(input, output, session) {
   ## output functions
   output$sentence_text <- renderText(sentence_text())
   output$sentence_party <- renderText(sentence_party())
-  output$url <- renderText(link_to_question())
   output$answer_distribution <- renderTable(answer_distribution())
   output$answer_area <- renderUI({ ## This should be greatly modified for layouting!
     if(state$show_answer) {
-      list(p("The answer:"),
-           textOutput("sentence_party"),
-           p("Answer distribution"),
-           tableOutput("answer_distribution"),
-           p("Link to question: "),
-           textOutput("url"),
-           actionButton("button_next", "Next"))
+      fluidRow(
+        id = "bottom_row",
+        column(width = 2,
+               a("Link to this question", href = link_to_question())),
+        column(width = 8),
+        column(width = 2,
+               actionButton("button_next", "Next question"))
+      )
     } else {
-      p()
+      fluidRow()
     }
   })
 

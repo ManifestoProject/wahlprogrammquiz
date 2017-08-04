@@ -51,8 +51,6 @@ shinyUI(fixedPage(title = "Wahlprogrammquiz",
            )
        )
   )),
-  div(id = "outputDiv",
-      uiOutput("answer_area")
-  )
+  uiOutput("answer_area")
 
 ))
