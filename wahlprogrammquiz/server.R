@@ -53,7 +53,7 @@ valid_sentence_ids <- function() {
   questions %$% sentence_id %>% unlist()
 }
 
-party_order <- c("41113", "41223", "41320", "41521", "41420", "41953")
+party_order <- c("41223", "41113", "41320", "41521", "41420", "41953")
 
 shinyServer(function(input, output, session) {
   
@@ -84,8 +84,8 @@ shinyServer(function(input, output, session) {
   
   selected_answer <- eventReactive(input$partyButton,
                                    switch(input$partyButton,
-                                     linkeButton = "41113",
-                                     grueneButton = "41223",
+                                     linkeButton = "41223",
+                                     grueneButton = "41113",
                                      spdButton = "41320",
                                      cduButton = "41521",
                                      fdpButton = "41420",
