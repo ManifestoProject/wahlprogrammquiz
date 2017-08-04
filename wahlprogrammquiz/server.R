@@ -32,8 +32,7 @@ iff <- function (obj, test, fun, ...) {
 }
 
 questions <- read_csv("sentences.csv") %>%
-  rename(sentence_id = corpus_sentence_id) %>%
-  mutate(sentence = text)
+  rename(sentence_id = corpus_sentence_id)
 
 get_from_id <- function(id, field_name) {
   questions %>%
@@ -68,7 +67,7 @@ shinyServer(function(input, output, session) {
                           session_id = paste0(stri_rand_strings(1, 20), "_", as.character(as.POSIXct(Sys.time()))),
                           show_answer = FALSE)
   
-  sentence_text <- reactive(get_from_id(state$sentence_id, "text"))
+  sentence_text <- reactive(get_from_id(state$sentence_id, ifelse(state$show_answer, "sentence", "text")))
   context_before <- reactive(get_from_id(state$sentence_id, "context_before") %>% iff(is.na, function(obj) ""))
   context_after <- reactive(get_from_id(state$sentence_id, "context_after") %>% iff(is.na, function(obj) ""))
   info_span <- reactive(HTML(paste0(
