@@ -160,7 +160,7 @@ shinyServer(function(input, output, session) {
                a("Link to this question", href = link_to_question())),
         column(width = 8),
         column(width = 2,
-               actionButton("button_next", "Next question"))
+               actionButton("button_next", "Weiter"))
       )
     } else {
       fluidRow()
