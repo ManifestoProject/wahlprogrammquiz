@@ -32,7 +32,8 @@ iff <- function (obj, test, fun, ...) {
 }
 
 questions <- read_csv("sentences.csv") %>%
-  rename(sentence_id = corpus_sentence_id)
+  rename(sentence_id = corpus_sentence_id) %>%
+  mutate_if(is.numeric, as.integer)
 
 get_from_id <- function(id, field_name) {
   questions %>%
@@ -112,10 +113,10 @@ shinyServer(function(input, output, session) {
     session$sendCustomMessage(type='resetValuesCallbackHandler', "none")
     state$show_answer <- FALSE
     
-    state$seen_sentences <- c(state$seen_sentences, state$sentence_id)
+    state$seen_sentences <- c(state$seen_sentences, as.integer(state$sentence_id))
     
     ## If User is through all questions, start over
-    if (length(setdiff(state$seen_sentences, valid_sentence_ids())) == 0) {
+    if (length(setdiff(valid_sentence_ids(), state$seen_sentences)) == 0) {
       state$seen_sentences <- integer(0)
     }
     state$sentence_id <- random_sentence_id(without = state$seen_sentences)
