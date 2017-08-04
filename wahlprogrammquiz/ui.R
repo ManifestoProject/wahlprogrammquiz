@@ -6,10 +6,15 @@ shinyUI(fixedPage(title = "Wahlprogrammquiz",
   htmltools::tags$head(htmltools::tags$script(src='wahlprogrammquiz.js')),
   div(id="title", "Wahlprogrammquiz"),
   
+  div(id = "infoDiv",
+      uiOutput("info_span")),
+  
   div(id = "sentenceDiv",
+      textOutput("context_before"),
       span(id="sentenceSpan",
            textOutput("sentence_text")
-           )
+           ),
+      textOutput("context_after")
       ),
   
   div(id="buttonsDiv",

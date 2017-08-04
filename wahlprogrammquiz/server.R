@@ -65,6 +65,15 @@ shinyServer(function(input, output, session) {
                           show_answer = FALSE)
   
   sentence_text <- reactive(get_from_id(state$sentence_id, "text"))
+  context_before <- reactive(get_from_id(state$sentence_id, "context_before"))
+  context_after <- reactive(get_from_id(state$sentence_id, "context_after"))
+  info_span <- reactive(HTML(paste0(
+                             "Aus dem Wahlprogramm der ",
+                             strong(get_from_id(state$sentence_id, "party")),  ## TODO change to partyname when new table is there
+                             ", Abschnitt ",
+                             strong(get_from_id(state$sentence_id, "heading")),
+                             ":",
+                             collapse = "")))
   
   sentence_party <- reactive(get_from_id(state$sentence_id, "party"))
   
@@ -135,6 +144,9 @@ shinyServer(function(input, output, session) {
   
   ## output functions
   output$sentence_text <- renderText(sentence_text())
+  output$context_before <- renderText(if (state$show_answer) context_before() else "")
+  output$context_after <- renderText(if (state$show_answer) context_after() else "")
+  output$info_span <- renderUI(if (state$show_answer) span(class = "infoSpan", info_span()) else span())
   output$sentence_party <- renderText(sentence_party())
   output$answer_distribution <- renderTable(answer_distribution())
   output$answer_area <- renderUI({ ## This should be greatly modified for layouting!
