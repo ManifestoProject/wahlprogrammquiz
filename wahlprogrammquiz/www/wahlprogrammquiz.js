@@ -34,9 +34,10 @@ $(document).ready(function() {
     animateBars(barValues);
   }
  );
- Shiny.addCustomMessageHandler("resetBarValuesCallbackHandler",     
+ Shiny.addCustomMessageHandler("resetValuesCallbackHandler",     
   function(message) {
     resetBars();
+    Shiny.onInputChange("partyButton", "none");
   }
  );
  

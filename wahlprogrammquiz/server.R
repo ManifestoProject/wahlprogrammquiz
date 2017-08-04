@@ -78,7 +78,8 @@ shinyServer(function(input, output, session) {
                                      cduButton = "41521",
                                      fdpButton = "41420",
                                      afdButton = "41953",
-                                     default = NULL))
+                                     default = NULL),
+                                   ignoreNULL = FALSE)
 
   event_next <- reactive(input$button_next)
   
@@ -96,7 +97,7 @@ shinyServer(function(input, output, session) {
   ## event observers
   observeEvent(event_next(), {
     #this sends a message to js to reset the bars to 0, and hide the percentages
-    session$sendCustomMessage(type='resetBarValuesCallbackHandler', "hello")
+    session$sendCustomMessage(type='resetValuesCallbackHandler', "none")
     state$show_answer <- FALSE
     
     state$seen_sentences <- c(state$seen_sentences, state$sentence_id)
@@ -110,23 +111,26 @@ shinyServer(function(input, output, session) {
     
   }, ignoreInit = TRUE)
   
-  observeEvent(selected_answer(), {
+  observeEvent(input$partyButton, {
     
-    state$show_answer <- TRUE
     
     if (!is.null(selected_answer())) {
-      db_connection %>%
+      state$show_answer <- TRUE
+
+        db_connection %>%
         db_insert_into(RESPONSES,
                        data_frame(session_id = state$session_id,
                                   sentence_id = state$sentence_id,   ## for the database table
                                   time_stamp = as.character(as.POSIXct(Sys.time())),
                                   answer = selected_answer()))
+        
+        #this sends the accumulated values to js, so that the bars can animate to the correct heights and display the percentage
+        #they should be between 0 and 1, I've put some sample values in below. Should be a length 6 numeric vector
+        results <- answer_distribution()
+        session$sendCustomMessage(type='barValuesCallbackHandler', results)
+        
     }
 
-    #this sends the accumulated values to js, so that the bars can animate to the correct heights and display the percentage
-    #they should be between 0 and 1, I've put some sample values in below. Should be a length 6 numeric vector
-    results <- answer_distribution()
-    session$sendCustomMessage(type='barValuesCallbackHandler', results)
   })
   
   ## output functions
