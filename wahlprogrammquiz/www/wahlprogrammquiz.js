@@ -78,7 +78,19 @@ $(document).ready(function() {
   });
  }
  
-
-
- 
 });
+
+function toggleOverlay() {
+  var element = document.getElementById("AboutOverlay");
+  console.log("toggling")
+  
+    if (element) {
+        var display = element.style.display;
+
+        if (display == "none") {
+            element.style.display = "block";
+        } else {
+            element.style.display = "none";
+        }
+    }
+}

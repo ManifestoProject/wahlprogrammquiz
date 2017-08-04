@@ -142,6 +142,29 @@ color: #7a7a7a;
   top:10vh;
 }
 
+#AboutLink {
+  position: fixed; /* Sit on top of the page content */
+  width: 10em; /* Full width (cover the whole page) */
+  height: 2vh; /* Full height (cover the whole page) */
+  top: 10px;
+  right: 10px;
+}
+
+#AboutOverlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none;
+  width: 90%; /* Full width (cover the whole page) */
+  height: 90%; /* Full height (cover the whole page) */
+  top: 40px;
+  left: 40px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  border: 2px solid #666666;
+  z-index: 20; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
 @media handheld and (orientation: portrait), (max-width: 720px) {
     #buttonsSpan div {flex-basis: 33%;}
     #title {font-size: 2em;}

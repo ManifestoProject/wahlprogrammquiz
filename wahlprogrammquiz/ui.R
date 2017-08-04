@@ -56,6 +56,12 @@ shinyUI(fixedPage(title = "Wahlprogrammquiz",
            )
        )
   )),
-  uiOutput("answer_area")
+  uiOutput("answer_area"),
+  div(id = "AboutLink",
+      a("About", href="javascript:void(0)", onClick = "toggleOverlay()")),
+  div(id = "AboutOverlay",
+      includeMarkdown("about.md"),
+      div(align = "right",
+          a("Zurück", href="javascript:void(0)", onClick = "toggleOverlay()")))
 
 ))
