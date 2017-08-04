@@ -31,7 +31,8 @@ iff <- function (obj, test, fun, ...) {
   }
 }
 
-questions <- read_csv("sentences.csv")
+questions <- read_csv("sentences.csv") %>%
+  rename(sentence_id = corpus_sentence_id)
 
 get_from_id <- function(id, field_name) {
   questions %>%
@@ -71,14 +72,14 @@ shinyServer(function(input, output, session) {
   context_after <- reactive(get_from_id(state$sentence_id, "context_after"))
   info_span <- reactive(HTML(paste0(
                              "Aus dem Wahlprogramm der ",
-                             strong(get_from_id(state$sentence_id, "party")),  ## TODO change to partyname when new table is there
+                             strong(get_from_id(state$sentence_id, "partyabbrev")),  ## TODO change to partyname when new table is there
                              ", Abschnitt ",
                              strong(get_from_id(state$sentence_id, "heading")),
                              ":",
                              collapse = "")))
   
   sentence_party <- reactive(get_from_id(state$sentence_id, "party"))
-  
+
   link_to_question <- reactive(paste0(ROOT_URL, "?sentence_id=", state$sentence_id))
   
   selected_answer <- eventReactive(input$partyButton,
