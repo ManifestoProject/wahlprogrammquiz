@@ -7,6 +7,7 @@ library(stringi)
 
 library(DBI) ## developed with package version 0.7
 library(RSQLite) ## developed with package version 2.0
+library(dbplyr)
 
 ROOT_URL = "localhost:8020" ## TODO replace with final URL
 RESPONSES = "responses"
