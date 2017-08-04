@@ -82,11 +82,15 @@ shinyServer(function(input, output, session) {
 
   event_next <- reactive(input$button_next)
   
-  answer_distribution <- reactive( ## This reacts on sentence_id, but should only be visible after selecting an answer
+  answer_distribution <- reactive(
     db_connection %>%
       tbl(RESPONSES) %>%
       dplyr::filter(sentence_id == !!as.numeric(state$sentence_id)) %>%
-      count(answer)
+      count(answer) %>%
+      collect() %>%
+      transmute(party = answer, per = n/sum(n)) %>%
+      left_join(data_frame(party = c("41113", "41223", "41320", "41521", "41420", "41953")), ., copy = TRUE) %>%
+      pull(per)
   )
   
   ## event observers
@@ -121,7 +125,7 @@ shinyServer(function(input, output, session) {
 
     #this sends the accumulated values to js, so that the bars can animate to the correct heights and display the percentage
     #they should be between 0 and 1, I've put some sample values in below. Should be a length 6 numeric vector
-    results <- c(0.2,0.4,0.5,1,0,0.9)
+    results <- answer_distribution()
     session$sendCustomMessage(type='barValuesCallbackHandler', results)
   })
   
