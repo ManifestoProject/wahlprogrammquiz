@@ -52,6 +52,8 @@ valid_sentence_ids <- function() {
   questions %$% sentence_id %>% unlist()
 }
 
+party_order <- c("41113", "41223", "41320", "41521", "41420", "41953")
+
 shinyServer(function(input, output, session) {
   
   
@@ -99,7 +101,7 @@ shinyServer(function(input, output, session) {
       count(answer) %>%
       collect() %>%
       transmute(party = answer, per = n/sum(n)) %>%
-      left_join(data_frame(party = c("41113", "41223", "41320", "41521", "41420", "41953")), ., copy = TRUE) %>%
+      left_join(data_frame(party = party_order), ., copy = TRUE) %>%
       pull(per)
   )
   
@@ -122,7 +124,6 @@ shinyServer(function(input, output, session) {
   
   observeEvent(input$partyButton, {
     
-    
     if (!is.null(selected_answer())) {
       state$show_answer <- TRUE
 
@@ -135,8 +136,9 @@ shinyServer(function(input, output, session) {
         
         #this sends the accumulated values to js, so that the bars can animate to the correct heights and display the percentage
         #they should be between 0 and 1, I've put some sample values in below. Should be a length 6 numeric vector
-        results <- answer_distribution()
-        session$sendCustomMessage(type='barValuesCallbackHandler', results)
+        session$sendCustomMessage(type='barValuesCallbackHandler', 
+                                  message = list(percentages = answer_distribution(), 
+                                                 opacities = 0.3 + 0.7*(party_order == sentence_party())))
         
     }
 

@@ -30,8 +30,10 @@ $(document).ready(function() {
  /*END TEMPORARY!!*/
  
  Shiny.addCustomMessageHandler("barValuesCallbackHandler",     
-  function(barValues) {
-    animateBars(barValues);
+  function(message) {
+    console.log(message.percentages);
+    console.log(message.opacities);
+    animateBars(message.percentages, message.opacities);
   }
  );
  Shiny.addCustomMessageHandler("resetValuesCallbackHandler",     
@@ -45,11 +47,19 @@ $(document).ready(function() {
  function resetBars() {
    $(".per").hide(200);
    $(".bar").animate({'height': "0"}, 200);
+   $(".partyButton").each(function( i ) {
+    $(this).animate({"opacity": 1.0 });
+   });
+
  }
- function animateBars(values) {
+ function animateBars(percentages, opacities) {
    $(".per").show();
+   $(".partyButton").each(function( i ) {
+     $(this).animate({"opacity": opacities[i] });
+   });
    $(".bar").each(function( i ) {
-     $(this).animate({"height":  (values[i] * $(this).parent().height())},
+     $(this).animate({"height":  (percentages[i] * $(this).parent().height()),
+                      "opacity": opacities[i] },
          {duration: 800,
           easing:'swing',
           step: function() { // called on every step
