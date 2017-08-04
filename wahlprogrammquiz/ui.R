@@ -12,8 +12,6 @@ shinyUI(fixedPage(title = "Wahlprogrammquiz",
            )
       ),
   
-  uiOutput("answer_area"),
-  
   div(id="buttonsDiv",
   span(id = "buttonsSpan",
        div(id="linkeDiv", class = "partyDiv",
@@ -52,6 +50,9 @@ shinyUI(fixedPage(title = "Wahlprogrammquiz",
                div(id="afdBar", class = "bar")
            )
        )
-  ))
+  )),
+  div(id = "outputDiv",
+      uiOutput("answer_area")
+  )
 
 ))
