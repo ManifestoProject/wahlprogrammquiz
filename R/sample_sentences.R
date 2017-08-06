@@ -115,7 +115,7 @@ read.xlsx("wahlprogrammquiz/sample41_edited.xlsx", sheetName="Sample") %>%
   as_data_frame() %>% 
   filter(exclude==FALSE) %>%
   group_by(partyabbrev) %>%
-  sample_n(10) %>%
+  sample_n(17) %>%
   write_csv(paste("wahlprogrammquiz/sample_manualedited",sample_seed,".csv",sep=""))
   
   
