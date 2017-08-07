@@ -31,7 +31,6 @@ iff <- function (obj, test, fun, ...) {
 }
 
 questions <- read_csv("sentences.csv") %>%
-  rename(sentence_id = corpus_sentence_id) %>%
   mutate_if(is.numeric, as.integer)
 
 get_from_id <- function(id, field_name) {
