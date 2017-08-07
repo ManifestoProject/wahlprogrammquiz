@@ -21,8 +21,8 @@ body {
   font-size:1.2em;
 }
 #sentenceDiv {
+text-align:justify;
 overflow: hidden; 
-text-align: center;
 margin: 0 auto;
 }
 #sentenceSpan {
@@ -143,6 +143,7 @@ z-index:15;
 #bottom_row {
   position:relative;
   top:10vh;
+  padding:7vh;
 }
 
 #AboutLink {
@@ -158,8 +159,8 @@ z-index:15;
   display: none;
   width: 90%; /* Full width (cover the whole page) */
   height: 90%; /* Full height (cover the whole page) */
-  top: 40px;
-  left: 40px;
+  top: 5%;
+  left: 5%;
   padding: 10px;
   background-color: #ffffff;
   border-radius: 25px;
