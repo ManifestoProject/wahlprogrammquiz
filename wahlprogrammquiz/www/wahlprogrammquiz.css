@@ -102,7 +102,7 @@ z-index:15;
 }
 
 .bar {
-  z-index: -9999;
+  z-index: -20;
   margin: 50px auto 0 auto;
   height:50%;
   width:75%;
@@ -131,7 +131,7 @@ z-index:15;
   background-color: blue;
 }
 .per {
-  z-index: 9999;
+  z-index:-18;
   font-size: 3em;
   color: white;
   text-shadow: black 0 0 10px;
