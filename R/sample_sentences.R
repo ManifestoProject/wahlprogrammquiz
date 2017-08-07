@@ -19,8 +19,8 @@ partynames <- tribble(
   ~doc_id, ~partyabbrev,~party,~partycolor,~partyorder,
   "union.txt","CDU/CSU","41521","black",1,
   "spd.txt","SPD","41320","red",2,
-  "linke.txt","LINKE","41223","purple",3,
-  "gruene.txt","GRÜNE","41113","darkgreen",4,
+  "linke.txt","LINKEN","41223","purple",3,
+  "gruene.txt","GRÜNEN","41113","darkgreen",4,
   "fdp.txt", "FDP","41420","gold",5,
   "afd.txt", "AfD","41953","blue",6
 )
