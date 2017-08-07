@@ -4,30 +4,6 @@ $(document).ready(function() {
  $( ".partyButton" ).click(function() {
    Shiny.onInputChange("partyButton", this.id);
  });
-
-
-/*TEMPORARY!!*/
- function randomBars() {
-   var a = new Array(6);
-   for (i = 0; i < 6; i++) { 
-     a[i] = Math.random();
-   }
-   animateBars(a);
- }
-  $(document).on("keypress", function (e) {
-   console.log(e.which);
-   switch(e.which) {
-     case 114:
-       resetBars();
-     break;
-     case 32:
-       randomBars();
-     break;
-     default:
-     break;
-   }
- });
- /*END TEMPORARY!!*/
  
  Shiny.addCustomMessageHandler("barValuesCallbackHandler",     
   function(message) {
