@@ -159,7 +159,7 @@ shinyServer(function(input, output, session) {
       fluidRow(
         id = "bottom_row",
         column(width = 2,
-               a("Permanente URL", href = link_to_question())),
+               a("Permanente URL zu dieser Frage", href = link_to_question())),
         column(width = 8),
         column(width = 2,
                actionButton("button_next", "Nächste Frage"))
