@@ -64,10 +64,8 @@ function toggleOverlay(element_id) {
 
         if (display == "none") {
             element.style.display = "block";
-            Shiny.onInputChange("visibility_" + element_id, "block");
         } else {
             element.style.display = "none";
-            Shiny.onInputChange("visibility_" + element_id, "none");
         }
     }
 }

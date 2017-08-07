@@ -65,7 +65,8 @@ shinyServer(function(input, output, session) {
                             iff(. %>% is_in(valid_sentence_ids()) %>% not(), random_sentence_id),
                           seen_sentences = integer(0),
                           session_id = paste0(stri_rand_strings(1, 20), "_", as.character(as.POSIXct(Sys.time()))),
-                          show_answer = FALSE)
+                          show_answer = FALSE,
+                          show_share = FALSE)
   
   sentence_text <- reactive(get_from_id(state$sentence_id, ifelse(state$show_answer, "sentence", "text")))
   context_before <- reactive(get_from_id(state$sentence_id, "context_before") %>% iff(is.na, function(obj) ""))
@@ -114,6 +115,7 @@ shinyServer(function(input, output, session) {
     #this sends a message to js to reset the bars to 0, and hide the percentages
     session$sendCustomMessage(type='resetValuesCallbackHandler', "none")
     state$show_answer <- FALSE
+    state$show_share <- FALSE
     
     state$seen_sentences <- c(state$seen_sentences, as.integer(state$sentence_id))
     
@@ -161,7 +163,7 @@ shinyServer(function(input, output, session) {
         id = "bottom_row",
         column(width = 8),
         column(width = 2,
-               actionButton("share_link", "Link teilen", onClick = "javascript:toggleOverlay('ShareOverlay')")),
+               actionButton("share_link", "Link teilen")),
         column(width = 2,
                actionButton("button_next", "Nächste Frage"))
       )
@@ -170,14 +172,20 @@ shinyServer(function(input, output, session) {
     }
   })
   output$question_url <- renderText(link_to_question())
+  observeEvent(input$share_link, {
+    state$show_share <- TRUE
+  })
+  observeEvent(input$hide_link, {
+    state$show_share <- FALSE
+  })
+  share_style <- reactive(if(state$show_share) "display:block;" else "display:none;")
+  
   output$share_overlay <- renderUI({
-    if (is.null(input$hide_link) || input$hide_link == 0L || input$share_link > input$hide_link) {
-      div(id = "ShareOverlay",
+      div(id = "ShareOverlay", style=share_style(),
           textInput("ignore_url", label = "Permanente URL:", value = link_to_question()),
-          tags$button("Tweet Link (not implement yet)"),
+          tags$button("Tweet Link (not implemented yet)"),
           div(align = "right",
-          actionButton("hide_link", "Zurück", onClick = "toggleOverlay('ShareOverlay')")))    
-    }
+          actionButton("hide_link", "Zurück")))
   })
 
 })
