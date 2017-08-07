@@ -151,7 +151,7 @@ z-index:15;
   width: 10em; 
   height: 2vh; 
   top: 10px;
-  right: 10px;
+  right: 1%;
 }
 
 #AboutOverlay {
@@ -175,7 +175,7 @@ z-index:15;
   display: block;
   width: 80%;
   height: 80%;
-  min-width:40em;
+  min-width:80%;
   min-height:10vh;
   top: 10%;
   left: 10%;

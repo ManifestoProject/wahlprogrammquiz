@@ -163,7 +163,7 @@ shinyServer(function(input, output, session) {
         id = "bottom_row",
         column(width = 8),
         column(width = 2,
-               actionButton("share_link", "Link teilen")),
+               actionButton("share_link", "Dieses Zitat teilen")),
         column(width = 2,
                actionButton("button_next", "Nächste Frage"))
       )
