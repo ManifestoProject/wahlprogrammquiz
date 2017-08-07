@@ -1,5 +1,6 @@
-## Was ist das ?
+## Was ist das?
 
+Die angezeigten Zitate stammen aus den Wahlprogrammen von CDU/CSU, SPD, LINKE, GRÜNE, FDP und AfD.
 Wir wollen mit dieser Seite spielerisch über die Inhalte der Wahlprogramme informieren. Außerdem werden die Antworten gespeichert und können uns Erkenntnisse zur Wahrnehmung und Kenntnis der Wahlprogramme liefern. 
 
 ## Wer steckt dahinter:
@@ -14,4 +15,4 @@ Dieses Angebot ist politisch neutral.
 
 Die Sätze wurden den sechs Wahlprogrammen der etablierten Parteien entnommen. 
 
-Die Auswahl der Sätze erfolgte in einem zweistufigen Verfahren. Zuerst wurden zufällig Sätze von allen Parteien ausgewählt. Dabei wurden nur solche Sätze berücksichtigt, welche mit "Wir" beginnen um Sätze mit konkreten politischen Forderungen zu erhalten. Zudem wurden Sätze ausgeschlossen, welche den Namen der Partei oder einer anderen Partei beinhalten. In Fällen wo der Parteiname leicht aus dem Satz entfernt werden konnte, ohne dass eine Umformulierung des Satzes notwendig ist, wurde der Parteiname automatisch entfernt (z.B. "Wir Freie Demokraten fordern, dass..." wurde zu "Wir fordern, dass..."). Außerdem wurden Sätze ausgelassen, welche mit Wörtern wie "damit", "deshalb" auf einen vorherigen Satz verweisen und als Einzelsatz nicht verständlich sind. In einem zweiten Schritt wurden einige wenige Sätze von Hand ausgeschlossen, welche keinerlei politische Forderungen oder Erklärungen beinhalten oder Stilmittel beinhalten, welche sehr eindeutig auf eine bestimmte Partei hinweisen (z.B. der Gender-Star bei den GRÜNEN).
+Die Auswahl der Sätze erfolgte in einem zweistufigen Verfahren. Zuerst wurden zufällig Sätze aus den Programmen der sechs Parteien ausgewählt. Dabei wurden nur solche Sätze berücksichtigt, welche mit "Wir" beginnen, um Sätze mit konkreten politischen Forderungen zu erhalten. Zudem wurden Sätze ausgeschlossen, welche den Namen der Partei oder einer anderen Partei beinhalten. In Fällen in denen der Parteiname leicht aus dem Satz entfernt werden konnte, ohne dass eine Umformulierung des Satzes notwendig ist, wurde der Parteiname automatisch entfernt (z.B. "Wir Freie Demokraten fordern, dass..." wurde zu "Wir fordern, dass..."). Außerdem wurden Sätze ausgelassen, welche mit Wörtern wie "damit", "deshalb" und ähnliche auf einen vorherigen Satz verweisen und als Einzelsatz nicht verständlich sind. In einem zweiten Schritt wurden einige wenige Sätze von Hand ausgeschlossen, welche keinerlei politische Forderungen oder Erklärungen beinhalten oder Stilmittel beinhalten, welche sehr eindeutig auf eine bestimmte Partei hinweisen (z.B. der Gender-Star bei den GRÜNEN).
