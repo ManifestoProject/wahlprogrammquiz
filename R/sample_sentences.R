@@ -7,15 +7,20 @@ library(stringr)
 library(zoo)
 library(xlsx)
 
-#"sentence_id","text","context_before","context_after","party"
+## sample
+## set seed 
+sample_seed <- 41
+set.seed(sample_seed)
 
+
+#"sentence_id","text","context_before","context_after","party"
 
 partynames <- tribble(
   ~doc_id, ~partyabbrev,~party,~partycolor,~partyorder,
   "union.txt","CDU/CSU","41521","black",1,
   "spd.txt","SPD","41320","red",2,
-  "linke.txt","LINKE","41223","purple",3,
-  "gruene.txt","GRÜNE","41113","darkgreen",4,
+  "linke.txt","LINKEN","41223","purple",3,
+  "gruene.txt","GRÜNEN","41113","darkgreen",4,
   "fdp.txt", "FDP","41420","gold",5,
   "afd.txt", "AfD","41953","blue",6
 )
@@ -91,10 +96,6 @@ program_sentences %T>%
   as.data.frame() %>%
   write.xlsx("wahlprogrammquiz/all_sentences.xlsx",row.names=FALSE)
 
-## sample
-## set seed 
-sample_seed <- 41
-set.seed(sample_seed)
 
 sample_sentences <- program_sentences %>% 
   filter(heading_order < 1 & partyname_in_text == FALSE) %>%
@@ -111,11 +112,19 @@ sample_sentences <- program_sentences %>%
   as.data.frame() %>%
   write.xlsx(paste("wahlprogrammquiz/sample",sample_seed,".xlsx",sep=""),sheetName = "Sample" ,row.names=FALSE)
 
+
+### read manually edited sample
+
 read.xlsx("wahlprogrammquiz/sample41_edited.xlsx", sheetName="Sample") %>% 
   as_data_frame() %>% 
-  filter(exclude==FALSE) %>%
+  filter(exclude==0) %>%
   group_by(partyabbrev) %>%
   sample_n(17) %>%
-  write_csv(paste("wahlprogrammquiz/sample_manualedited",sample_seed,".csv",sep=""))
+  ungroup() %>% 
+  mutate(sentence_id = sample(1:n(), n(), replace = FALSE)) %>% 
+  write.csv(paste("wahlprogrammquiz/sample_manualedited",sample_seed,".csv",sep=""),fileEncoding="UTF-8",row.names=FALSE)
+  
+  
+  # write_csv(paste("wahlprogrammquiz/sample_manualedited",sample_seed,".csv",sep=""))
   
   
