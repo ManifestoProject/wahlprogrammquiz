@@ -157,16 +157,16 @@ z-index:15;
 #AboutOverlay {
   position: absolute;
   display: none;
-  width: 90%; /* Full width (cover the whole page) */
-  height: 90%; /* Full height (cover the whole page) */
+  width: 90%;
+  height: 90%;
   top: 5%;
   left: 5%;
   padding: 10px;
   background-color: #ffffff;
   border-radius: 25px;
   border: 2px solid #666666;
-  z-index: 20; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
+  z-index: 20;
+  cursor: pointer;
   overflow-y: scroll;
 }
 
