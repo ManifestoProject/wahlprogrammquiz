@@ -172,7 +172,7 @@ z-index:15;
 
 #ShareOverlay {
   position: fixed;
-  display: none;
+  display: block;
   width: 80%;
   height: 80%;
   min-width:40em;

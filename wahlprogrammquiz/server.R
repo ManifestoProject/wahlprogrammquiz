@@ -161,7 +161,7 @@ shinyServer(function(input, output, session) {
         id = "bottom_row",
         column(width = 8),
         column(width = 2,
-               tags$button("Link teilen", onClick = "toggleOverlay('ShareOverlay');")),
+               actionButton("share_link", "Link teilen", onClick = "javascript:toggleOverlay('ShareOverlay')")),
         column(width = 2,
                actionButton("button_next", "Nächste Frage"))
       )
@@ -171,14 +171,12 @@ shinyServer(function(input, output, session) {
   })
   output$question_url <- renderText(link_to_question())
   output$share_overlay <- renderUI({
-    if(input$visibility_ShareOverlay == "block") {
-      fluidRow(
-        p("Permanente URL:"),
-        textInput("ignore_url", label = "", value = link_to_question()),
-        tags$button("Tweet Link (not implement yet)")
-      )
-    } else {
-      fluidRow()
+    if (is.null(input$hide_link) || input$hide_link == 0L || input$share_link > input$hide_link) {
+      div(id = "ShareOverlay",
+          textInput("ignore_url", label = "Permanente URL:", value = link_to_question()),
+          tags$button("Tweet Link (not implement yet)"),
+          div(align = "right",
+          actionButton("hide_link", "Zurück", onClick = "toggleOverlay('ShareOverlay')")))    
     }
   })
 
