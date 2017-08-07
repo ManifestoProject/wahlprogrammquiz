@@ -9,7 +9,6 @@ library(DBI) ## developed with package version 0.7
 library(RSQLite) ## developed with package version 2.0
 library(dbplyr)
 
-ROOT_URL = "http://localhost:8020" ## TODO replace with final URL
 RESPONSES = "responses"
 db_connection <- dbConnect(RSQLite::SQLite(), "wahlprogrammquiz.sqlite")
 if (!dbExistsTable(db_connection, RESPONSES)) {
@@ -81,7 +80,10 @@ shinyServer(function(input, output, session) {
   
   sentence_party <- reactive(get_from_id(state$sentence_id, "party"))
 
-  link_to_question <- reactive(paste0(ROOT_URL, "?sentence_id=", state$sentence_id))
+  link_to_question <- reactive(paste0("https://",
+                                      session$clientData$url_hostname,
+                                      session$clientData$url_pathname,
+                                      "?sentence_id=", state$sentence_id))
   
   selected_answer <- eventReactive(input$partyButton,
                                    switch(input$partyButton,
