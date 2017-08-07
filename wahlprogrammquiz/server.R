@@ -159,11 +159,23 @@ shinyServer(function(input, output, session) {
     if(state$show_answer) {
       fluidRow(
         id = "bottom_row",
-        column(width = 2,
-               a("Link to this question", href = link_to_question())),
         column(width = 8),
         column(width = 2,
-               actionButton("button_next", "Weiter"))
+               tags$button("Link teilen", onClick = "toggleOverlay('ShareOverlay');")),
+        column(width = 2,
+               actionButton("button_next", "Nächste Frage"))
+      )
+    } else {
+      fluidRow()
+    }
+  })
+  output$question_url <- renderText(link_to_question())
+  output$share_overlay <- renderUI({
+    if(input$visibility_ShareOverlay == "block") {
+      fluidRow(
+        p("Permanente URL:"),
+        textInput("ignore_url", label = "", value = link_to_question()),
+        tags$button("Tweet Link (not implement yet)")
       )
     } else {
       fluidRow()

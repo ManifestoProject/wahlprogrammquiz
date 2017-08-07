@@ -62,6 +62,11 @@ shinyUI(fixedPage(title = "Welche Partei hat's gesagt?",
   div(id = "AboutOverlay",
       includeMarkdown("about.md"),
       div(align = "right",
-          a("Zurück", href="javascript:void(0)", onClick = "toggleOverlay('AboutOverlay')")))
-
+          a("Zurück", href="javascript:void(0)", onClick = "toggleOverlay('AboutOverlay')"))),
+  div(id = "ShareOverlay",
+      p("Permanente URL"),
+      uiOutput("share_overlay"),
+      div(align = "right",
+          a("Zurück", href="javascript:void(0)", onClick = "toggleOverlay('ShareOverlay')")))
+  
 ))

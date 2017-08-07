@@ -170,6 +170,23 @@ z-index:15;
   overflow-y: scroll;
 }
 
+#ShareOverlay {
+  position: fixed;
+  display: none;
+  width: 80%;
+  height: 80%;
+  min-width:40em;
+  min-height:10vh;
+  top: 10%;
+  left: 10%;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 1px solid #999999;
+  z-index: 19;
+  cursor: pointer;
+}
+
 @media handheld and (orientation: portrait), (max-width: 720px) {
     #buttonsSpan div {flex-basis: 33%;}
     #title {font-size: 2em;}
