@@ -80,10 +80,9 @@ $(document).ready(function() {
  
 });
 
-function toggleOverlay() {
-  var element = document.getElementById("AboutOverlay");
-  console.log("toggling")
-  
+function toggleOverlay(element_id) {
+  var element = document.getElementById(element_id);
+
     if (element) {
         var display = element.style.display;
 
