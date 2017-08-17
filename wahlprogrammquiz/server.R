@@ -87,6 +87,7 @@ shinyServer(function(input, output, session) {
   context_before <- reactive(get_from_id(state$sentence_id, "context_before") %>% iff(is.na, function(obj) ""))
   context_after <- reactive(get_from_id(state$sentence_id, "context_after") %>% iff(is.na, function(obj) ""))
   info_span <- reactive(HTML(paste0(
+                             if (sentence_party() == selected_answer()) "Richtig! " else "Falsch! ",
                              "Aus dem Wahlprogramm der ",
                              strong(get_from_id(state$sentence_id, "partyabbrev")),  ## TODO change to partyname when new table is there
                              ", Abschnitt ",
