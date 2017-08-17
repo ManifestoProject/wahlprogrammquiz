@@ -199,13 +199,13 @@ shinyServer(function(input, output, session) {
   
   output$share_overlay <- renderUI({
       div(id = "ShareOverlay", style=share_style(),
-          textInput("ignore_url", label = "Kurz URL:", value = short_link_to_question()),
+          textInput("ignore_url", label = "Kurz-URL:", value = short_link_to_question()),
           textInput("ignore_short_url", label = "Permanente URL:", value = link_to_question()),
           tags$button("Tweet Link", onclick = paste0(
             "location.href='https://twitter.com/intent/tweet",
-            "?text=", URLencode("Welche Partei sagt: "), substr(get_from_id(state$sentence_id, "text"), 1, 86), "...",
+            "?text=", URLencode("Welche Partei sagt: "), substr(get_from_id(state$sentence_id, "text"), 1, 68), "...",
             "&url=", URLencode(short_link_to_question()),
-            "&hashtags=btw17'")),
+            "&hashtags=btw17,wahlprogrammquiz'")),
           div(align = "right",
           actionButton("hide_link", "Zurück")))
   })
