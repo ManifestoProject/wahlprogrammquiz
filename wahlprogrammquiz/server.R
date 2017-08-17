@@ -6,20 +6,36 @@ library(rlang)
 library(stringi)
 
 library(DBI) ## developed with package version 0.7
-library(RSQLite) ## developed with package version 2.0
 library(dbplyr)
 
-RESPONSES = "responses"
-db_connection <- dbConnect(RSQLite::SQLite(), "wahlprogrammquiz.sqlite")
-if (!dbExistsTable(db_connection, RESPONSES)) {
-  dbWriteTable(db_connection,
-               RESPONSES,
-               data_frame(session_id = character(),  ## This is a schema definition
-                          sentence_id = integer(),   ## for the database table
-                          time_stamp = character(),
-                          answer = character()
-                          ))
-} 
+if (file.exists("database.yml")) { ## use postgresql
+  require(RPostgreSQL)
+  require(yaml)
+  db_config <- yaml.load_file("database.yml")
+  RESPONSES <- db_config$table
+  db_connection <- dbConnect(
+    dbDriver("PostgreSQL"),
+    host = db_config$host,
+    port = db_config$port,
+    user = db_config$user,
+    password = db_config$password,
+    dbname = db_config$database)
+  
+} else { ## use local RSQLite
+  require(RSQLite) ## developed with package version 2.0
+  RESPONSES = "responses"
+  db_connection <- dbConnect(RSQLite::SQLite(), "wahlprogrammquiz.sqlite")
+  if (!dbExistsTable(db_connection, RESPONSES)) {
+    dbWriteTable(db_connection,
+                 RESPONSES,
+                 data_frame(session_id = character(),  ## This is a schema definition
+                            sentence_id = integer(),   ## for the database table
+                            time_stamp = character(),
+                            answer = character()
+                 ))
+  } 
+}
+
 
 ### iff function from gitlabr and manifestoR; this is copied in order to not import these packages
 iff <- function (obj, test, fun, ...) {
