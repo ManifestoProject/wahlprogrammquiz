@@ -100,6 +100,8 @@ shinyServer(function(input, output, session) {
                                       session$clientData$url_hostname,
                                       session$clientData$url_pathname,
                                       "?sentence_id=", state$sentence_id))
+  short_link_to_question <- reactive(paste0("https://tinyurl.com/wahlprogrammquiz",
+                                     "?sentence_id=", state$sentence_id))
   
   selected_answer <- eventReactive(input$partyButton,
                                    switch(input$partyButton,
@@ -197,8 +199,13 @@ shinyServer(function(input, output, session) {
   
   output$share_overlay <- renderUI({
       div(id = "ShareOverlay", style=share_style(),
-          textInput("ignore_url", label = "Permanente URL:", value = link_to_question()),
-          tags$button("Tweet Link (not implemented yet)"),
+          textInput("ignore_url", label = "Kurz URL:", value = short_link_to_question()),
+          textInput("ignore_short_url", label = "Permanente URL:", value = link_to_question()),
+          tags$button("Tweet Link", onclick = paste0(
+            "location.href='https://twitter.com/intent/tweet",
+            "?text=", URLencode("Welche Partei sagt: "), substr(get_from_id(state$sentence_id, "text"), 1, 86), "...",
+            "&url=", URLencode(short_link_to_question()),
+            "&hashtags=btw17'")),
           div(align = "right",
           actionButton("hide_link", "Zurück")))
   })
