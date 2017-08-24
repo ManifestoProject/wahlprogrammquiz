@@ -21,7 +21,7 @@ shinyUI(fixedPage(title = "Welche Partei hat's gesagt?",
 
   div(id = "info2Div",
       uiOutput("info2_span")),
-  
+  uiOutput("answer_area"),
   div(id="buttonsDiv",
   span(id = "buttonsSpan",
        div(id="linkeDiv", class = "partyDiv",
@@ -61,7 +61,7 @@ shinyUI(fixedPage(title = "Welche Partei hat's gesagt?",
            )
        )
   )),
-  uiOutput("answer_area"),
+
   div(id = "AboutLink",
       a("About", href="javascript:void(0)", onClick = "toggleOverlay('AboutOverlay')")),
   div(id = "AboutOverlay",
