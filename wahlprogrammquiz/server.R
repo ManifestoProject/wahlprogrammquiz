@@ -111,7 +111,7 @@ shinyServer(function(input, output, session) {
                                     else " Zitat ",
                                     "richtig zugeordnet. Es gibt noch ",
                                     97 - length(state$correct_answers)-1,
-                                    " weitere Zitate. Die Balken und Prozentzahlen zeigen die Antworten aller Nutzer an.",
+                                    " weitere Zitate. Die Balken zeigen die Antworten aller Nutzer an.",
                                     collapse = "")))
   
   sentence_party <- reactive(get_from_id(state$sentence_id, "party"))
@@ -123,8 +123,10 @@ shinyServer(function(input, output, session) {
   short_link_to_question <- reactive(paste0("https://tinyurl.com/wahlprogrammquiz",
                                      "?sentence_id=", state$sentence_id))
   
-  selected_answer <- eventReactive(input$partyButton,
-                                   switch(input$partyButton,
+  selected_answer <- eventReactive(
+    if (state$show_answer==FALSE) { 
+    input$partyButton},
+      switch(input$partyButton,
                                      linkeButton = "41223",
                                      grueneButton = "41113",
                                      spdButton = "41320",
@@ -133,6 +135,7 @@ shinyServer(function(input, output, session) {
                                      afdButton = "41953",
                                      default = NULL),
                                    ignoreNULL = FALSE)
+
 
   event_next <- reactive(input$button_next)
   
@@ -168,7 +171,7 @@ shinyServer(function(input, output, session) {
   
   observeEvent(input$partyButton, {
     
-    if (!is.null(selected_answer())) {
+    if (!is.null(selected_answer()) & state$show_answer == FALSE) {
       state$show_answer <- TRUE
 
         db_connection %>%
