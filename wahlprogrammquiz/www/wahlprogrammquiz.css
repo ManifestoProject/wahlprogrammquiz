@@ -20,6 +20,11 @@ body {
   margin-bottom:10px;
   font-size:1.2em;
 }
+#info2Div {
+  margin-top:10px;
+  margin-bottom:10px;
+  font-size:1.2em;
+}
 #sentenceDiv {
 text-align:justify;
 overflow: hidden; 

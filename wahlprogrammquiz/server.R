@@ -79,6 +79,7 @@ shinyServer(function(input, output, session) {
                             iff(is.null, random_sentence_id) %>%
                             iff(. %>% is_in(valid_sentence_ids()) %>% not(), random_sentence_id),
                           seen_sentences = integer(0),
+                          correct_answers = logical(0),
                           session_id = paste0(stri_rand_strings(1, 20), "_", as.character(as.POSIXct(Sys.time()))),
                           show_answer = FALSE,
                           show_share = FALSE)
@@ -86,14 +87,32 @@ shinyServer(function(input, output, session) {
   sentence_text <- reactive(get_from_id(state$sentence_id, ifelse(state$show_answer, "sentence", "text")))
   context_before <- reactive(get_from_id(state$sentence_id, "context_before") %>% iff(is.na, function(obj) ""))
   context_after <- reactive(get_from_id(state$sentence_id, "context_after") %>% iff(is.na, function(obj) ""))
+  
   info_span <- reactive(HTML(paste0(
-                             if (sentence_party() == selected_answer()) "Richtig! " else "Falsch! ",
+                             if (sentence_party() == selected_answer()) "<font color='green'><b>Richtig!</b></font> " else "<font color='red'><b>Falsch!</b></font> ",
                              "Aus dem Wahlprogramm der ",
                              strong(get_from_id(state$sentence_id, "partyabbrev")),  ## TODO change to partyname when new table is there
                              ", Abschnitt ",
                              strong(get_from_id(state$sentence_id, "heading")),
-                             ":",
+                            ":",
                              collapse = "")))
+  
+  info2_span <- reactive(HTML(paste0(
+                                    "Bisher ", 
+                                    if (sentence_party() == selected_answer()) {
+                                      sum(state$correct_answers, na.rm=TRUE) + 1
+                                    }
+                                    else  {
+                                      sum(state$correct_answers, na.rm=TRUE) 
+                                    },
+                                    " aus ", 
+                                    length(state$correct_answers)+1, 
+                                    if (length(state$correct_answers) > 0) " Zitaten "
+                                    else " Zitat ",
+                                    "richtig zugeordnet. Es gibt noch ",
+                                    97 - length(state$correct_answers)-1,
+                                    " weitere Zitate. Die Balken und Prozentzahlen zeigen die Antworten aller Nutzer an.",
+                                    collapse = "")))
   
   sentence_party <- reactive(get_from_id(state$sentence_id, "party"))
 
@@ -136,6 +155,7 @@ shinyServer(function(input, output, session) {
     state$show_share <- FALSE
     
     state$seen_sentences <- c(state$seen_sentences, as.integer(state$sentence_id))
+    state$correct_answers <- c(state$correct_answers, sentence_party() == selected_answer())
     
     ## If User is through all questions, start over
     if (length(setdiff(valid_sentence_ids(), state$seen_sentences)) == 0) {
@@ -173,6 +193,7 @@ shinyServer(function(input, output, session) {
   output$context_before <- renderText(if (state$show_answer) context_before() else "")
   output$context_after <- renderText(if (state$show_answer) context_after() else "")
   output$info_span <- renderUI(if (state$show_answer) span(class = "infoSpan", info_span()) else span())
+  output$info2_span <- renderUI(if (state$show_answer) span(class = "info2Span", info2_span()) else span())
   output$sentence_party <- renderText(sentence_party())
   output$answer_distribution <- renderTable(answer_distribution())
   output$answer_area <- renderUI({ ## This should be greatly modified for layouting!

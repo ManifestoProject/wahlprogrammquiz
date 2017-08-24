@@ -16,6 +16,9 @@ shinyUI(fixedPage(title = "Welche Partei hat's gesagt?",
            ),
       textOutput("context_after")
       ),
+
+  div(id = "info2Div",
+      uiOutput("info2_span")),
   
   div(id="buttonsDiv",
   span(id = "buttonsSpan",
