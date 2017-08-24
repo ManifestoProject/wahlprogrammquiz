@@ -2,8 +2,10 @@ library(shiny)
 library(shinyBS)
 
 shinyUI(fixedPage(title = "Welche Partei hat's gesagt?",
-  includeCSS("www/wahlprogrammquiz.css"),
+                  tags$head(tags$meta(property="og:image", content="images/thumb.jpg")),
+                  includeCSS("www/wahlprogrammquiz.css"),
   htmltools::tags$head(htmltools::tags$script(src='wahlprogrammquiz.js')),
+
   div(id="title", "Welche Partei hat's gesagt?"),
   
   div(id = "infoDiv",
