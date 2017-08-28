@@ -61,4 +61,37 @@ Reichpietschufer 50
 
 #### Datenschutzerklärung
 
+Sehr geehrte Besucherinnen und Besucher unseres Internetportals,
+
+die folgenden Datenschutzbestimmungen sind dafür gedacht, Sie über unsere Handhabung der Erhebung, Verwendung und Weitergabe von personenbezogenen Daten zu informieren. Verantwortliche Stelle für dieses Webangebot ist das Wissenschaftszentrum Berlin für Sozialforschung gGmbH (WZB).
+
+Genereller Umgang mit personenbezogenen Daten  
+Der Schutz Ihrer Privatsphäre ist uns sehr wichtig. Daher haben wir unser Internet-Angebot grundsätzlich so gestaltet, dass dessen Nutzung anonym erfolgen kann. Wir verwenden Informationen, die wir während Ihres Besuches unserer Webseiten erhalten und speichern, ausschließlich für interne Zwecke und zur Verbesserung der Gestaltung der Webseiten. Eine Ausnahme gilt, wenn dies zur Abwehr gegen Angriffe erforderlich ist, die Straftatbestände darstellen oder die die Funktionsfähigkeit unseres Webangebotes beeinträchtigen. Allein zu diesem Zweck erfassen wir z.B. auch die IP-Adresse Ihres Rechners, die als Sicherheitsmaßnahme i.S.v. § 100 Abs. 1 TKG für sieben Tage gespeichert wird.
+
+Nutzungsdaten  
+Wenn Sie unsere Webseiten besuchen, werden auf unserem Webserver temporär so genannte Nutzungsdaten als Protokoll gespeichert. Wir verwenden diese Informationen um den Aufruf unserer Seiten zu ermöglichen, zur Verbesserung der Qualität unserer Webseiten,  zu statistischen Zwecken sowie zur Kontrolle und Administration unserer Systeme. Dieser Datensatz besteht aus: 
+
+- der Seite, von der aus die Datei angefordert wurde,  
+- dem Namen der Datei,  
+- dem Datum und der Uhrzeit der Abfrage,  
+- der übertragenen Datenmenge,  
+- dem Zugriffsstatus (Datei übertragen, Datei nicht gefunden),  
+- der Beschreibung des Typs des verwendeten Webbrowsers,  
+- der IP-Adresse des anfragenden Rechners.  
+
+Die IP-Adresse löschen wir nach sieben Tagen. Daten über Personen oder ihr Individualverhalten werden hierbei nicht gesammelt und es werden keine personenbezogenen Nutzerprofile erstellt.
+
+Kontaktaufnahme  
+Sie haben die Möglichkeit, mit uns per E-Mail in Kontakt zu treten. Die dabei anfallenden Daten werden lediglich zur Beantwortung Ihrer Anfrage verarbeitet. Eine Weitergabe an Dritte erfolgt nur, soweit dies für die Bearbeitung Ihres Anliegens erforderlich ist.
+
+Ihre Rechte als Nutzer  
+Sie haben als Nutzer das Recht, Auskunft darüber zu verlangen, welche Daten über Sie bei uns gespeichert sind und zu welchem Zweck diese Speicherung erfolgt. Darüber hinaus können Sie unrichtige Daten berichtigen oder solche Daten löschen lassen, deren Speicherung unzulässig oder nicht mehr erforderlich ist. Für Auskünfte, Wünsche oder Anregungen zum Thema Datenschutz stehen wir Ihnen gerne zur Verfügung.
+
+Verschlüsselung  
+Um Ihre Daten vor unerwünschten Zugriffen zu schützen, setzen wir auf einigen Seiten ein Verschlüsselungsverfahren ein. Ihre Angaben werden dann von Ihrem Rechner zu unserem Server und umgekehrt über das Internet mittels einer 128-Bit-TLS-Verschlüsselung (Transport Layer Security) übertragen. Sie erkennen dies daran, dass auf der Statusleiste Ihres Browsers ein Schloss-Symbol erscheint und die Adresszeile mit https:// beginnt.
+
+Datenschutzbeauftragter  
+Unser betrieblicher Datenschutzbeauftragter steht Ihnen gern für Auskünfte oder Anregungen zum Thema Datenschutz zur Verfügung. Wenden Sie sich bitte an folgenden Ansprechpartner:
+
+E-Mail: datenschutz@wzb.eu
 
