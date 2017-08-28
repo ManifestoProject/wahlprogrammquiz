@@ -90,12 +90,10 @@ shinyServer(function(input, output, session) {
   
   info_span <- reactive(div(span(class = if (sentence_party() == selected_answer()) "label label-success" else "label label-danger", 
                                  if (sentence_party() == selected_answer()) strong("RICHTIG !") else strong("FALSCH !")),
-                            HTML("&nbsp;"),
-                            "Aus dem Wahlprogramm der ",
-                            strong(get_from_id(state$sentence_id, "partyabbrev")),
+                            HTML(paste0("&nbsp;",
+                            "Aus dem Wahlprogramm der ", paste0("<strong>", get_from_id(state$sentence_id, "partyabbrev"), "</strong>"),
                             ", Abschnitt ",
-                            strong(get_from_id(state$sentence_id, "heading")),
-                            ":"))
+                            paste0("<strong>", get_from_id(state$sentence_id, "heading"), "</strong>", ":")))))
   
   info2_span <- reactive(HTML(paste0(
                                     "Bisher ", 
