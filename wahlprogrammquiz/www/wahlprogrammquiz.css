@@ -14,7 +14,7 @@ body {
   line-height: 1;
   text-align: center;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 #infoDiv {
   margin-bottom:10px;
@@ -45,6 +45,18 @@ padding: 0.25em 40px;
 line-height: 1.45;
 left:20px;
 min-height:40px;
+position: relative;
+color: #383838;
+}
+#context_before, #context_after {
+font-family: Georgia, serif;
+font-size: 1.0em;
+font-style: italic;
+text-align: left;
+margin: 0 auto;
+padding: 0.25em 40px;
+line-height: 1.45;
+left:20px;
 position: relative;
 color: #383838;
 }
@@ -147,7 +159,8 @@ z-index:15;
 
 #bottom_row {
   position:relative;
-  top:3vh;
+  /* top:3vh; */
+  /* margin-bottom:3vh; */
   padding:1vh;
 }
 
@@ -161,7 +174,7 @@ z-index:15;
 
 #AboutOverlay {
   position: absolute;
-  display: none;
+  /* display: none; */
   width: 90%;
   height: 90%;
   top: 5%;
