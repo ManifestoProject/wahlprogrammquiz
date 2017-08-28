@@ -64,7 +64,7 @@ shinyUI(fixedPage(title = "Welche Partei hat's gesagt?",
 
   div(id = "AboutLink",
       a("About", href="javascript:void(0)", onClick = "toggleOverlay('AboutOverlay')")),
-  div(id = "AboutOverlay",
+  div(id = "AboutOverlay", style = "display:none",
       includeMarkdown("about.md"),
       div(align = "right",
           a("Zurück", href="javascript:void(0)", onClick = "toggleOverlay('AboutOverlay')"))),

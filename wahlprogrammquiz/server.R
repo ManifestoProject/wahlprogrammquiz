@@ -88,14 +88,12 @@ shinyServer(function(input, output, session) {
   context_before <- reactive(get_from_id(state$sentence_id, "context_before") %>% iff(is.na, function(obj) ""))
   context_after <- reactive(get_from_id(state$sentence_id, "context_after") %>% iff(is.na, function(obj) ""))
   
-  info_span <- reactive(HTML(paste0(
-                             if (sentence_party() == selected_answer()) "<font color='LimeGreen'><b>Richtig!</b></font> " else "<font color='red'><b>Falsch!</b></font> ",
-                             "Aus dem Wahlprogramm der ",
-                             strong(get_from_id(state$sentence_id, "partyabbrev")),  ## TODO change to partyname when new table is there
-                             ", Abschnitt ",
-                             strong(get_from_id(state$sentence_id, "heading")),
-                            ":",
-                             collapse = "")))
+  info_span <- reactive(div(span(class = if (sentence_party() == selected_answer()) "label label-success" else "label label-danger", 
+                                 if (sentence_party() == selected_answer()) strong("RICHTIG !") else strong("FALSCH !")),
+                            HTML(paste0("&nbsp;",
+                            "Aus dem Wahlprogramm der ", paste0("<strong>", get_from_id(state$sentence_id, "partyabbrev"), "</strong>"),
+                            ", Abschnitt ",
+                            paste0("<strong>", get_from_id(state$sentence_id, "heading"), "</strong>", ":")))))
   
   info2_span <- reactive(HTML(paste0(
                                     "Bisher ", 
@@ -203,11 +201,10 @@ shinyServer(function(input, output, session) {
     if(state$show_answer) {
       fluidRow(
         id = "bottom_row",
-        column(width = 8),
-        column(width = 2,
-               actionButton("share_link", "Dieses Zitat teilen")),
-        column(width = 2,
-               actionButton("button_next", "Nächste Frage"))
+        column(width = 4,
+               actionButton(width = "100%", "share_link", "Dieses Zitat teilen")),
+        column(width = 8,
+               actionButton(width = "100%", "button_next", "Nächste Frage"))
       )
     } else {
       fluidRow()
