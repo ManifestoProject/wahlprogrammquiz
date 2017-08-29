@@ -7,8 +7,8 @@ $(document).ready(function() {
  
  Shiny.addCustomMessageHandler("barValuesCallbackHandler",     
   function(message) {
-    console.log(message.percentages);
-    console.log(message.opacities);
+    /* console.log(message.percentages); */
+    /* console.log(message.opacities); */
     animateBars(message.percentages, message.opacities);
   }
  );
@@ -42,11 +42,11 @@ $(document).ready(function() {
           // Update the element's text with rounded-up value:
           var myHeight = $(this).height();
           var parentHeight = $(this).parent().height();
-          console.log(i+"  "+ (myHeight/parentHeight));
+          /* console.log(i+"  "+ (myHeight/parentHeight)); */
           var percentage = Math.round(100*myHeight/parentHeight);
-          console.log(i+" $(this).height() " + $(this).height());
-          console.log(i+" parent.height() " + $(this).parent().height());
-          console.log(i+" per " + percentage);
+          /* console.log(i+" $(this).height() " + $(this).height()); */
+          /* console.log(i+" parent.height() " + $(this).parent().height()); */
+          /* console.log(i+" per " + percentage); */
           $(this).parent().children(".per").text(percentage + "%");
           }
          }
